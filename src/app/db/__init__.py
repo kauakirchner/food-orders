@@ -1,11 +1,11 @@
 import requests
-from src.app.models.city import City
-from src.app.models.state import State
-from src.app.models.country import Country
-from src.app.models.user import User
-from src.app.models.city.schema import cities_share_schema
-from src.app.models.state.schema import states_share_schema
-from src.app.models.country.schema import country_share_schema
+from src.app.entities.city import City
+from src.app.entities.state import State
+from src.app.entities.country import Country
+from src.app.entities.user import User
+from src.app.entities.city.schema import cities_share_schema
+from src.app.entities.state.schema import states_share_schema
+from src.app.entities.country.schema import country_share_schema
 from src.app import DB
 
 def populate_db():

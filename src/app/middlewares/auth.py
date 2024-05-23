@@ -1,7 +1,7 @@
 from functools import wraps
 from jwt import decode
 from flask import request, jsonify, current_app
-from src.app.models.user import User
+from src.app.entities.user import User
 
 def requires_access_level(permission):
   def jwt_required(current_function):

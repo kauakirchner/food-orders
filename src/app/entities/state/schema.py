@@ -1,5 +1,5 @@
 from src.app import MA
-from src.app.models.country.schema import country_share_schema
+from src.app.entities.country.schema import country_share_schema
 
 class StateSchema(MA.Schema):
   country = MA.Nested(country_share_schema)

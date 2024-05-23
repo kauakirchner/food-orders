@@ -1,6 +1,6 @@
 from src.app import MA
-from src.app.models.role.schema import roles_share_schema
-from src.app.models.city.schema import city_share_schema
+from src.app.entities.role.schema import roles_share_schema
+from src.app.entities.city.schema import city_share_schema
 
 class UserSchema(MA.Schema):
   city = MA.Nested(city_share_schema)

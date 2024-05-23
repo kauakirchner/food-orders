@@ -1,6 +1,6 @@
 from src.app import DB
 
-class Categorie(DB.Model):
+class Category(DB.Model):
   __tablename__ = 'categories'
   id = DB.Column(DB.Integer, autoincrement=True, primary_key=True)
   name = DB.Column(DB.String(84), nullable=False)
@@ -14,7 +14,7 @@ class Categorie(DB.Model):
 
   @classmethod
   def seed(cls, name: str, description: str, active: bool):
-    role = Categorie(
+    role = Category(
       name=name,
       description=description,
       active=active

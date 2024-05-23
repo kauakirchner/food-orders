@@ -1,4 +1,4 @@
-from src.app.models.state import State
+from src.app.entities.state import State
 from src.app import DB
 
 class City(DB.Model):

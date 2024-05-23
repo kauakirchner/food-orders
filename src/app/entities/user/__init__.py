@@ -1,5 +1,5 @@
 import bcrypt
-from src.app.models.city import City
+from src.app.entities.city import City
 from src.app import DB
 
 users_roles = DB.Table('users_role',

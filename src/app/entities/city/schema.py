@@ -1,6 +1,6 @@
 
 from src.app import MA
-from src.app.models.state.schema import state_share_schema
+from src.app.entities.state.schema import state_share_schema
 
 class CitySchema(MA.Schema):
   state = MA.Nested(state_share_schema)

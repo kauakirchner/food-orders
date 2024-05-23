@@ -1,6 +1,6 @@
-from src.app.models.user import User
-from src.app.models.role import Role
-from src.app.models.user.schema import user_share_schema
+from src.app.entities.user import User
+from src.app.entities.role import Role
+from src.app.entities.user.schema import user_share_schema
 
 def create_user(city_id, name, age, email, password, roles):
   try:

@@ -1,5 +1,5 @@
 from src.app import MA
-from src.app.models.permissions.schema import permissions_share_schema
+from src.app.entities.permissions.schema import permissions_share_schema
 
 class RoleSchema(MA.Schema):
   permissions = MA.Nested(permissions_share_schema)
