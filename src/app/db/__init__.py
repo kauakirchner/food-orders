@@ -6,7 +6,7 @@ from src.app.models.user import User
 from src.app.models.city.schema import cities_share_schema
 from src.app.models.state.schema import states_share_schema
 from src.app.models.country.schema import country_share_schema
-from src.app import db
+from src.app import DB
 
 def populate_db():
   country = Country.query.first()
@@ -23,7 +23,7 @@ def populate_db():
 
     country_name = countries_data.json()[0]['nome']
     Country.seed(country_name, 'Português')
-    db.session.commit()  # Commit the country to the database
+    DB.session.commit()
     country = Country.query.filter_by(name=country_name).first()
     country_dict = country_share_schema.dump(country)
     
@@ -33,7 +33,7 @@ def populate_db():
         stateObject['nome'],
         stateObject['sigla']
       )
-    db.session.commit()  # Commit the states to the database
+    DB.session.commit()
     
     state = State.query.order_by(State.name.asc()).all()
     state_dict = states_share_schema.dump(state)
@@ -45,7 +45,7 @@ def populate_db():
           state_id,
           city_object['nome']
         )
-    db.session.commit()  # Commit the cities to the database
+    DB.session.commit()
 
     cities = City.query.order_by(City.name.asc()).all()
     cities_dict = cities_share_schema.dump(cities)
@@ -60,14 +60,14 @@ def populate_db():
         user['email'],
         user['login']['password']
       )
-    db.session.commit()  # Commit the users to the database
+    DB.session.commit()
     users = User.query.order_by(User.name.asc()).all()
     print("Dados inseridos com sucesso.")
   
   except Exception as e:
     print(f"Error populating the database: {e}")
-    db.session.rollback()
+    DB.session.rollback()
   return
 
 def delete_tables():
-  db.drop_all()
+  DB.drop_all()

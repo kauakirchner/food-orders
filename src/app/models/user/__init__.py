@@ -1,23 +1,23 @@
 import bcrypt
-from src.app import db
 from src.app.models.city import City
+from src.app import DB
 
-users_roles = db.Table('users_role',
-                    db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
-                    db.Column('role_id', db.Integer, db.ForeignKey('roles.id'))
+users_roles = DB.Table('users_role',
+                    DB.Column('user_id', DB.Integer, DB.ForeignKey('users.id')),
+                    DB.Column('role_id', DB.Integer, DB.ForeignKey('roles.id'))
                     )
 
 
-class User(db.Model):
+class User(DB.Model):
   __tablename__ = 'users'
-  id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-  city_id = db.Column(db.Integer, db.ForeignKey(City.id), nullable=False)
-  name = db.Column(db.String(84), nullable=False)
-  age = db.Column(db.Integer, nullable=False)
-  email = db.Column(db.String(84), nullable=False)
-  password = db.Column(db.String(84), nullable=False)
-  city = db.relationship('City', foreign_keys=[city_id])
-  roles = db.relationship('Roles', secondary=[users_roles], backref='users')
+  id = DB.Column(DB.Integer, autoincrement=True, primary_key=True)
+  city_id = DB.Column(DB.Integer, DB.ForeignKey(City.id), nullable=False)
+  name = DB.Column(DB.String(84), nullable=False)
+  age = DB.Column(DB.Integer, nullable=False)
+  email = DB.Column(DB.String(84), nullable=False)
+  password = DB.Column(DB.String(84), nullable=False)
+  city = DB.relationship('City', foreign_keys=[city_id])
+  roles = DB.relationship('Roles', secondary=[users_roles], backref='users')
 
   def __init__(self, city_id: int, name: str, age: int, email: str, password: str, roles) -> None:
     self.city_id = city_id
@@ -47,7 +47,7 @@ class User(db.Model):
     user.save()
   
   def save(self):
-    db.session.add(self)
-    db.session.commit()
+    DB.session.add(self)
+    DB.session.commit()
     
   

@@ -1,13 +1,13 @@
 from src.app.models.state import State
-from src.app import db
+from src.app import DB
 
-class City(db.Model):
+class City(DB.Model):
   __tablename__ = 'cities'
 
-  id = db.Column(db.Integer, autoincrement = True, primary_key = True)
-  state_id = db.Column(db.Integer, db.ForeignKey(State.id), nullable = False)
-  name = db.Column(db.String(84), nullable = False)
-  state = db.relationship('State', foreign_keys=[state_id])
+  id = DB.Column(DB.Integer, autoincrement = True, primary_key = True)
+  state_id = DB.Column(DB.Integer, DB.ForeignKey(State.id), nullable = False)
+  name = DB.Column(DB.String(84), nullable = False)
+  state = DB.relationship('State', foreign_keys=[state_id])
 
   def __init__(self, state_id, name):
     self.state_id = state_id
@@ -22,5 +22,5 @@ class City(db.Model):
     city.save()
   
   def save(self):
-    db.session.add(self)
-    db.session.commit()
+    DB.session.add(self)
+    DB.session.commit()

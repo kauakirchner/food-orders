@@ -1,9 +1,9 @@
 
-from src.app import ma
+from src.app import MA
 from src.app.models.state.schema import state_share_schema
 
-class CitySchema(ma.Schema):
-  state = ma.Nested(state_share_schema)
+class CitySchema(MA.Schema):
+  state = MA.Nested(state_share_schema)
   class Meta:
     fields = ('id', 'state_id', 'state' 'name')
 

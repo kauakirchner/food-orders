@@ -1,14 +1,14 @@
-from src.app import db
+from src.app import DB
 from src.app.models.country import Country
 
-class State(db.Model):
+class State(DB.Model):
   __tablename__ = "states"
 
-  id = db.Column(db.Integer, autoincrement = True, primary_key = True)
-  country_id = db.Column(db.Integer, db.ForeignKey(Country.id), nullable = False)
-  name = db.Column(db.String(84), nullable = False)
-  initials = db.Column(db.String(2), nullable = False)
-  country = db.relationship("Country", foreign_keys=[country_id ])
+  id = DB.Column(DB.Integer, autoincrement = True, primary_key = True)
+  country_id = DB.Column(DB.Integer, DB.ForeignKey(Country.id), nullable = False)
+  name = DB.Column(DB.String(84), nullable = False)
+  initials = DB.Column(DB.String(2), nullable = False)
+  country = DB.relationship("Country", foreign_keys=[country_id ])
 
   def __init__(self, country_id, name, initials):
     self.country_id = country_id
@@ -25,5 +25,5 @@ class State(db.Model):
     state.save()
   
   def save(self):
-    db.session.add(self)
-    db.session.commit()
+    DB.session.add(self)
+    DB.session.commit()

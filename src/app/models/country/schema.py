@@ -1,6 +1,6 @@
-from src.app import ma
+from src.app import MA
 
-class CountrySchema(ma.Schema):
+class CountrySchema(MA.Schema):
   class Meta:
     fields = ('id', 'name', 'language')
 

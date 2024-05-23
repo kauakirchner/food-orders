@@ -1,11 +1,11 @@
-from src.app import db
+from src.app import DB
 
-class Categorie(db.Model):
+class Categorie(DB.Model):
   __tablename__ = 'categories'
-  id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-  name = db.Column(db.String(84), nullable=False)
-  description = db.Column(db.String(84), nullable=False)
-  active = db.Column(db.Boolean, nullable=False)
+  id = DB.Column(DB.Integer, autoincrement=True, primary_key=True)
+  name = DB.Column(DB.String(84), nullable=False)
+  description = DB.Column(DB.String(84), nullable=False)
+  active = DB.Column(DB.Boolean, nullable=False)
 
   def __init__(self, name: str, description: str, active: bool) -> None:
     self.name = name
@@ -22,5 +22,5 @@ class Categorie(db.Model):
     role.save()
 
   def save(self):
-    db.session.add(self)
-    db.session.commit()
+    DB.session.add(self)
+    DB.session.commit()

@@ -1,8 +1,8 @@
-from src.app import ma
+from src.app import MA
 from src.app.models.country.schema import country_share_schema
 
-class StateSchema(ma.Schema):
-  country = ma.Nested(country_share_schema)
+class StateSchema(MA.Schema):
+  country = MA.Nested(country_share_schema)
   class Meta:
     fields = ('id', 'country_id', 'country', 'name', 'initials')
 

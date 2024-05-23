@@ -1,8 +1,8 @@
-from src.app import ma
+from src.app import MA
 from src.app.models.permissions.schema import permissions_share_schema
 
-class RoleSchema(ma.Schema):
-  permissions = ma.Nested(permissions_share_schema)
+class RoleSchema(MA.Schema):
+  permissions = MA.Nested(permissions_share_schema)
   class Meta:
     fields = ('id', 'description', 'permissions')
 

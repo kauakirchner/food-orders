@@ -1,10 +1,10 @@
-from src.app import ma
+from src.app import MA
 from src.app.models.role.schema import roles_share_schema
 from src.app.models.city.schema import city_share_schema
 
-class UserSchema(ma.Schema):
-  city = ma.Nested(city_share_schema)
-  roles = ma.Nested(roles_share_schema)
+class UserSchema(MA.Schema):
+  city = MA.Nested(city_share_schema)
+  roles = MA.Nested(roles_share_schema)
   class Meta:
     fields = ('id', 'city_id', 'name', 'age', 'email', 'password', 'city', 'roles')
 

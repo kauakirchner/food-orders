@@ -1,6 +1,6 @@
-from src.app import ma
+from src.app import MA
 
-class FoodSchema(ma.Schema):
+class FoodSchema(MA.Schema):
   class Meta:
     fields = ('id', 'active', 'price', 'units', 'available', 'name', 'description', 'category_id')
 

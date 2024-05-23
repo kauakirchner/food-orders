@@ -1,6 +1,6 @@
-from src.app import ma
+from src.app import MA
 
-class PermissionSchema(ma.Schema):
+class PermissionSchema(MA.Schema):
   class Meta: 
     fields = ('id', 'description')
 

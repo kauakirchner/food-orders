@@ -1,15 +1,15 @@
-from src.app import db
+from src.app import DB
 
-role_permissions = db.Table('role_permissions',
-                    db.Column('role_id', db.Integer, db.ForeignKey('roles.id')),
-                    db.Column('permission_id', db.Integer, db.ForeignKey('permissions.id'))
+role_permissions = DB.Table('role_permissions',
+                    DB.Column('role_id', DB.Integer, DB.ForeignKey('roles.id')),
+                    DB.Column('permission_id', DB.Integer, DB.ForeignKey('permissions.id'))
 )
 
-class Role(db.Model):
+class Role(DB.Model):
   __tablename__ = 'roles'
-  id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-  description = db.Column(db.String(84), nullable=False)
-  permissions = db.relationship('Permission', secondary=role_permissions, backref='roles')
+  id = DB.Column(DB.Integer, autoincrement=True, primary_key=True)
+  description = DB.Column(DB.String(84), nullable=False)
+  permissions = DB.relationship('Permission', secondary=role_permissions, backref='roles')
 
   def __init__(self, description: str, permissions) -> None:
     self.description = description
@@ -24,5 +24,5 @@ class Role(db.Model):
     role.save()
 
   def save(self):
-    db.session.add(self)
-    db.session.commit()
+    DB.session.add(self)
+    DB.session.commit()

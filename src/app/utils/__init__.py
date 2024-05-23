@@ -13,4 +13,4 @@ def exist_key(request_json, list_keys):
   if len(keys_not_have_in_request) == 0:
     return request_json
   
-  return { 'error': f'Está faltando o item {keys_not_have_in_request}'}
+  return { 'error': f'Following params are missing {keys_not_have_in_request}'}

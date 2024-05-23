@@ -1,9 +1,9 @@
-from src.app import db
+from src.app import DB
 
-class Permission(db.Model):
+class Permission(DB.Model):
   __tablename__ = 'permissions'
-  id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-  description = db.Column(db.String(84), nullable=False)
+  id = DB.Column(DB.Integer, autoincrement=True, primary_key=True)
+  description = DB.Column(DB.String(84), nullable=False)
 
   def __init__(self, description: str) -> None:
     self.description = description
@@ -16,5 +16,5 @@ class Permission(db.Model):
     permission.save()
 
   def save(self):
-    db.session.add(self)
-    db.session.commit()
+    DB.session.add(self)
+    DB.session.commit()
