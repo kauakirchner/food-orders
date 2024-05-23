@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 from flask import Blueprint, request, current_app
 from flask.wrappers import Response
 from flask.globals import session
@@ -13,9 +14,10 @@ from src.app.utils import exist_key, generate_jwt
 
 
 auth = Blueprint('auth', __name__, url_prefix='/auth')
+CLIENT_SECRETS_FILE_NAME = os.environ.get('OAUTH_CREDENTIALS')
 
-flow = Flow(
-  client_secrets_file='src/app/db/client_secret.json',
+flow = Flow.from_client_config(
+  client_config=json.loads(CLIENT_SECRETS_FILE_NAME),
   scopes=[
     "https://www.googleapis.com/auth/userinfo.email",
     "https://www.googleapis.com/auth/userinfo.profile",
@@ -88,7 +90,8 @@ def callback():
   del user_google_dict['aud']
   del user_google_dict['azp']
 
-  return redirect(f'{current_app.config['FRONTEND_URL']}?jwt={generate_jwt(user_google_dict)}')
+  token = generate_jwt(user_google_dict)
+  return redirect(f"{current_app.config['FRONTEND_URL']}?jwt={token}")
 
 @auth.route('/logout', methods=['POST'])
 def logout():
