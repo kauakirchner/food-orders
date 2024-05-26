@@ -47,7 +47,7 @@ def login():
     mimetype='application/json'
   )
 
-@auth.route('/auth/google', methods=['POST'])
+@auth.route('/google', methods=['POST'])
 def auth_google():
   authorization_url, state = flow.authorization_url()
   session['state'] = state
@@ -58,7 +58,7 @@ def auth_google():
     mimetype='application/json'
   )
 
-@auth.route('/auth/callback', methods=['GET'])
+@auth.route('/callback', methods=['GET'])
 def callback():
   flow.fetch_token(authorization_response=request.url)
   credentials = flow.credentials
