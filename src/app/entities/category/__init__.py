@@ -14,12 +14,12 @@ class Category(DB.Model):
 
   @classmethod
   def seed(cls, name: str, description: str, active: bool):
-    role = Category(
+    category = Category(
       name=name,
       description=description,
       active=active
     )
-    role.save()
+    category.save()
 
   def save(self):
     DB.session.add(self)

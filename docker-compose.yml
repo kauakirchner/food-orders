@@ -1,6 +1,21 @@
 version: '3.8'
 
 services:
+  app:
+    build: . 
+    container_name: food-orders-api
+    ports:
+      - '5000:5000'
+    environment:
+      - FLASK_APP=${FLASK_APP}
+      - FLASK_ENV=${FLASK_ENV}
+      - DATABASE_URL=${SQLALCHEMY_DATABASE_URI}
+      - SQLALCHEMY_TRACK_MODIFICATIONS=${SQLALCHEMY_TRACK_MODIFICATIONS}
+      - FRONTEND_URL=${FRONTEND_URL}
+      - SECRET_KEY=${SECRET_KEY}
+      - OAUTH_CREDENTIALS=${OAUTH_CREDENTIALS}
+    volumes:
+      - .:/usr/app
   db:
     container_name: flask-db
     image: postgres:latest
